@@ -24,8 +24,8 @@ echo $GW
 # setup our network
 znetconf -a $READCHAN
 ip addr add $HOSTIP dev eth0
-ip route add default via $GW dev eth0
 ip link set dev eth0 up
+ip route add default via $GW dev eth0
 
 echo "search $SEARCH" >> /etc/resolv.conf
 echo "nameserver $DNS" >> /etc/resolv.conf
@@ -38,5 +38,6 @@ curl "$SERVER/boot/s390x/linux" > /tmp/linux
 
 
 # load new kernel
-echo kexec -l /tmp/linux --initrd=/tmp/initrd --command-line=$CMDLINE
-echo kexec -e
+HARDCODED_CMDLINE="instnetdev=osa layer2=1 portno=1 OSAInterface=qdio OSAHWAddress="
+kexec -l /tmp/linux --initrd=/tmp/initrd --command-line=$CMDLINE $HARDCODED_CMDLINE
+kexec -e
