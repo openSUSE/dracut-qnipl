@@ -20,4 +20,7 @@ install() {
     inst_simple /usr/bin/getopt
     inst_simple /usr/bin/sort
     inst_simple /usr/bin/find
+    inst_simple /usr/bin/cut
+
+    inst_hook cmdline 99 "$moddir/qnipl.sh"
 }
