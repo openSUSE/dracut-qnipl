@@ -39,5 +39,5 @@ curl "$SERVER/boot/s390x/linux" > /tmp/linux
 
 # load new kernel
 HARDCODED_CMDLINE="instnetdev=osa layer2=1 portno=1 OSAInterface=qdio OSAHWAddress="
-kexec -l /tmp/linux --initrd=/tmp/initrd --command-line=$CMDLINE $HARDCODED_CMDLINE
+kexec -l /tmp/linux --initrd=/tmp/initrd --command-line="$CMDLINE $HARDCODED_CMDLINE"
 kexec -e
