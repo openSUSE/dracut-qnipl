@@ -7,6 +7,8 @@ check() {
     local _online=0
     [ "$_arch" = "s390" -o "$_arch" = "s390x" ] || return 1
     dracut_module_included network || return 1
+    # qnipl needs curl
+    dracut_module_included url-lib || return 1
 
     return 255
 }
