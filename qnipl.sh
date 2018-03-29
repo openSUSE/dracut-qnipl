@@ -1,5 +1,5 @@
-#!/bin/bash
-function get_kparam {
+#!/bin/sh
+get_kparam {
   REQ_PARAM=$1
   echo $CMDLINE | tr " " "\n" | grep -i "$REQ_PARAM=" | cut -d "=" -f 2-
 }
